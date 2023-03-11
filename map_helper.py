@@ -6,12 +6,12 @@ class Map():
     def __init__(self, win, map_name, player_x, player_y):
         self.window = win
         self.map_name = map_name
-        self.map_cfg = self.get_map_cfg(self.map_name)
+        self.map_cfg = self.get_map_cfg()
         self.player_x = player_x
         self.player_y = player_y
 
-    def get_map_cfg(self, map_name):
-        return MAP_CFG[map_name]
+    def get_map_cfg(self):
+        return MAP_CFG[self.map_name]
 
     def _get_color(self, index, map_structure):
         # check if is a wall or not
@@ -27,6 +27,8 @@ class Map():
             for col in range(map_size):
                 # map column loop
                 square_index = row * map_size + col
+                
+                #update 2d map
                 pygame.draw.rect(self.window,
                     self. _get_color(square_index, self.map_cfg['map_structure']),
                     (col * tile_size, row * tile_size, tile_size, tile_size))
